@@ -14,7 +14,11 @@ class DeviceController extends Controller
      */
     public function index()
     {
-        return view('auth.register');
+        $devices = Device::latest()->get();
+        return view('devices.index', [
+            'devices' => $devices,
+            'titulo' => "Lista de dispositivos"
+        ]);
     }
 
     /**
@@ -24,7 +28,9 @@ class DeviceController extends Controller
      */
     public function create()
     {
-        //
+        return view('devices.create', [
+            'title' => 'Crear un nuevo dispositivo',
+        ]);
     }
 
     /**
@@ -35,7 +41,15 @@ class DeviceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'id_device' => 'required|max:10',
+            'deveui' => 'required',
+            'appeui' => 'required'
+        ]);
+
+        Device::create($request->all());
+        return redirect()->route('devices.index')
+        ->with('success', 'Device created successfully.');
     }
 
     /**

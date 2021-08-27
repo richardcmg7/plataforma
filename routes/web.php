@@ -23,6 +23,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/devices', [DeviceController::class, 'index'])->name('devices');
+Route::resource('/devices', DeviceController::class);
 
 require __DIR__.'/auth.php';
