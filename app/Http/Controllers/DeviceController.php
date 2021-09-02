@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Device;
 use Illuminate\Http\Request;
+use App\Http\Requests\Device\DeviceRequest;
 
 class DeviceController extends Controller
 {
@@ -39,15 +40,9 @@ class DeviceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DeviceRequest $Devicerequest)
     {
-        $request->validate([
-            'id_device' => 'required|max:10',
-            'deveui' => 'required',
-            'appeui' => 'required'
-        ]);
-
-        Device::create($request->all());
+        Device::create($Devicerequest->all());
         return redirect()->route('devices.index')
         ->with('success', 'Device created successfully.');
     }

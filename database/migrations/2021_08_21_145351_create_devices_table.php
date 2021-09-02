@@ -16,8 +16,8 @@ class CreateDevicesTable extends Migration
         Schema::create('devices', function (Blueprint $table) {
             $table->id();
             $table->string('id_device'); //
-            $table->string('deveui', 10)->nullable();
-            $table->string('appeui', 10)->nullable();
+            $table->string('deveui', 30)->nullable();
+            $table->string('appeui', 40)->nullable();
             $table->string('freq_region')->nullable();
             $table->timestamps();
         });
