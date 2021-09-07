@@ -46,7 +46,7 @@ class DeviceFactory extends Factory
 	'923.3'
 	];
 	return [
-		'id_device' => $this->faker->unique()->macAddress(),
+		    'id_device' => $this->faker->unique()->macAddress(),
         	'deveui' => $this->faker->unique()->macAddress(),
 	        'appeui' => $this->faker->md5(),
         	'freq_region' => $this->faker->randomElement(array_merge($freq_up, $freq_down))
